@@ -11,28 +11,28 @@ import Conteiner from "./components/Conteiner/Conteiner";
 import shortid from "shortid";
 
 function App() {
-  // const [contacts, setContacts] = useState([]);
-  // const [filter, setFilter] = useState("");
-
-  // useEffect(() => {
-  //   const contacts = localStorage.getItem("contacts");
-  //   const parsedContacts = JSON.parse(contacts);
-  //   if (parsedContacts) {
-  //     setContacts(parsedContacts);
-  //   }
-  // }, []);
   const contacts = useSelector((state) => state.contacts.contacts);
   const filter = useSelector((state) => state.contacts.filter);
   const dispatch = useDispatch();
 
   // useEffect(
   //   (prevState) => {
+  //     console.log(contacts);
   //     if (contacts !== prevState) {
   //       localStorage.setItem("contacts", JSON.stringify(contacts));
   //     }
   //   },
   //   [contacts]
   // );
+
+  // useEffect(() => {
+  //   const localContacts = localStorage.getItem("contacts");
+  //   const parsedLocalContacts = JSON.parse(localContacts);
+  //   // console.log(parsedLocalContacts);
+  //   // if (parsedLocalContacts) {
+  //   //   dispatch(actions.addContact(parsedLocalContacts));
+  //   // }
+  // }, []);
 
   const addContacts = (data) => {
     const contact = {
@@ -58,8 +58,8 @@ function App() {
     dispatch(actions.deleteContact(eventId));
   };
 
-  const changeFilter = (e) => {
-    dispatch(e.currentTarget.value);
+  const changeFilter = (event) => {
+    dispatch(actions.filterContact(event.currentTarget.value));
   };
 
   const normalizedFilter = filter.toLocaleLowerCase();
